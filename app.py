@@ -32,66 +32,16 @@ def after_request(response):
 
 
 @app.route("/")
-@login_required
 def index():
-    """Show portfolio of stocks"""
-    list = db.execute("SELECT * FROM stock WHERE id = ?", session["user_id"])
-    listuser = db.execute("SELECT * FROM users WHERE id = ?", session["user_id"])
-    cashdict = listuser[0]
-    Cash = round(cashdict['cash'], 2)
-    return render_template("index.html", stocks=list, Cash=Cash)
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
-@app.route("/buy", methods=["GET", "POST"])
-@login_required
-def buy():
-    """Buy shares of stock"""
-    if request.method == "POST":
-        symbol = (request.form.get("symbol")).upper()
-        stock = lookup(symbol)
-        if stock == None:
-            return apology("No stock found")
-        shares = request.form.get("shares")
-        try:
-            shares = int(shares)
-        except ValueError:
-            return apology("not a number cuh", 400)
-        if shares < 1:
-            return apology("bruh", 400)
-        shares = float(shares)
-        price = float(stock['price'])
-        row = db.execute("SELECT * FROM users WHERE id = ?", session["user_id"])
-        dict = row[0]
-        cash = dict['cash']
-        total = price * shares
-        if (cash < total):
-            return apology("your broke", 400)
-        newcash = cash - total
-        list = db.execute("SELECT * FROM stock WHERE id = ? AND name = ?", session["user_id"], symbol)
-        is_empty = True
-        for _ in list:
-            is_empty = False
-            break  # Exit the loop as soon as one row is encountered
-        if is_empty:
-             db.execute("INSERT INTO stock (id, name, price, shares) VALUES (?, ?, ? ,?)", session["user_id"], symbol, price, shares)
-        else:
-            rowshare = db.execute("SELECT * FROM stock WHERE id = ? AND name = ?", session["user_id"], symbol)
-            dictshare = rowshare[0]
-            newshare = dictshare['shares'] + shares
-            db.execute("UPDATE stock SET shares = ? WHERE id = ?", newshare, session['user_id'])
-        db.execute("UPDATE users SET cash = ? WHERE id = ?", newcash, session['user_id'])
-        return redirect("/")
-    else:
-        return render_template("buy.html")
-
-@app.route("/history")
-@login_required
-def history():
-    return render_template("history.html")
-
-@app.route("/login", methods=["GET", "POST"])
+"""@app.route("/login", methods=["GET", "POST"])
 def login():
-    """Log user in"""
+     user in
 
     # Forget any user_id
     session.clear()
@@ -127,7 +77,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    """Log user out"""
+    Log user out
 
     # Forget any user_id
     session.clear()
@@ -139,7 +89,7 @@ def logout():
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
-    """Get stock quote."""
+    Get stock quote.
     if request.method == "POST":
         symbol = request.form.get("symbol")
         stock = lookup(symbol)
@@ -151,7 +101,7 @@ def quote():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
+    Register user
     if request.method == "POST":
         # checking if the user actually put anything in the field
         if not request.form.get("username"):
@@ -186,33 +136,4 @@ def register():
         return redirect("/")
 
     else:
-        return render_template("register.html")
-
-
-@app.route("/sell", methods=["GET", "POST"])
-@login_required
-def sell():
-    list = db.execute("SELECT * FROM stock WHERE id = ?", session["user_id"])
-
-    listuser = db.execute("SELECT * FROM users WHERE id = ?", session["user_id"])
-    dictuser = listuser[0]
-    usercash = float(dictuser['cash'])
-
-    if request.method == "POST":
-        defaultstockpricedict = lookup(request.form.get("symbol"))
-        defaultstockprice = defaultstockpricedict['price']
-        stocklist = db.execute("SELECT * FROM stock WHERE id = ? AND name = ?", session["user_id"], request.form.get("symbol"))
-        stockdict = stocklist[0]
-        stockshare = float(stockdict['shares'])
-        stockprice = float(stockdict['price'])
-        wantsellshare = float(request.form.get("shares"))
-        if (wantsellshare > stockshare):
-            return apology("your overselling dawg")
-        if stockshare == wantsellshare:
-            db.execute("DELETE FROM stock WHERE id = ? AND name = ?", session["user_id"], request.form.get("symbol"))
-        elif stockshare > wantsellshare:
-            db.execute("UPDATE stock SET shares = ? WHERE id = ?", stockshare - wantsellshare, session['user_id'])
-        db.execute("UPDATE users SET cash = ? WHERE id = ?", usercash + (wantsellshare * defaultstockprice), session['user_id'])
-        return redirect("/")
-    else:
-        return render_template("sell.html", stocks=list)
+        return render_template("register.html")"""

@@ -1,35 +1,73 @@
-{% extends "layout.html" %}
-
-{% block main %}
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class="text-start">Symbol</th>
-                <th class="text-start">Name</th>
-                <th class="text-end">Shares</th>
-                <th class="text-end">Price</th>
-                <th class="text-end">TOTAL</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for stock in stocks %}
-                <tr>
-                    <td class="text-start">{{ stock.name }}</td>
-                    <td class="text-start">{{ stock.name }}</td>
-                    <td class="text-end">{{ stock.shares }}</td>
-                    <td class="text-end">{{ stock.price | usd }}</td>
-                    <td class="text-end">{{ (stock.price * stock.shares) | usd }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
-                <td class="border-0 text-end">{{ Cash | usd}}<juj/td>
-            </tr>
-            <tr>
-                <td class="border-0 fw-bold text-end" colspan="4">TOTAL</td>
-                <td class="border-0 w-bold text-end">$10,000.00</td>
-            </tr>
-        </tfoot>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="globals.css" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="sample-project">
+            <div class="overlap-wrapper">
+                <div class="overlap">
+                    <div class="group">
+                        <div class="overlap-group">
+                            <img class="mask-group" src="img/mask-group.png" />
+                            <p class="life-is-better-with">
+                                <span class="text-wrapper">Life is better with</span>
+                                <span class="span"> <br /></span>
+                                <span class="text-wrapper-2">Artificial Intelligence</span>
+                            </p>
+                            <div class="overlap-group-wrapper">
+                                <div class="div">
+                                    <img class="union" src="img/union.svg" />
+                                    <div class="ellipse"></div>
+                                    <div class="text-wrapper-3">Hi</div>
+                                </div>
+                            </div>
+                            <img class="vector" src="img/vector-1.svg" />
+                            <img class="img" src="img/group-17.png" />
+                            <div class="div-wrapper">
+                                <div class="overlap-2">
+                                    <img class="rectangle" src="img/rectangle-5.svg" />
+                                    <div class="group-2">
+                                        <div class="rectangle-2"></div>
+                                        <div class="rectangle-3"></div>
+                                        <div class="rectangle-4"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-3">
+                                <div class="overlap-3">
+                                    <div class="rectangle-5"></div>
+                                    <img class="group-4" src="img/group-34635.png" />
+                                </div>
+                            </div>
+                            <div class="group-5">
+                                <div class="overlap-4">
+                                    <div class="rectangle-6"></div>
+                                    <div class="group-6">
+                                        <div class="ellipse-wrapper"><div class="ellipse-2"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-7">
+                                <div class="overlap-5">
+                                    <img class="vector-2" src="img/image.svg" />
+                                    <img class="group-8" src="img/group-1000001491.png" />
+                                    <div class="text-wrapper-4">Voice Search</div>
+                                </div>
+                            </div>
+                            <div class="group-9">
+                                <div class="overlap-6">
+                                    <img class="vector-3" src="img/vector-203.svg" />
+                                    <img class="group-10" src="img/image.png" />
+                                    <div class="text-wrapper-5">Let’s demo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="www-sample-com" src="img/www-sample-com.png" />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
