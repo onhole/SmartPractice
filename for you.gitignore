@@ -2,4 +2,3 @@ flask --app ./main.py --debug run (to run with debugger on and the website refre
 pipenv shell (activate pipenv)
 pip3 freeze (check packages)
 cd ../ (go out of the current folder)
-
