@@ -7,8 +7,6 @@ body {
   /* fonts */
   --font-poppins: Poppins;
   --font-inter: Inter;
-  --font-clash-grotesk: "Clash Grotesk";
-  --font-chillax: Chillax;
   --font-mulish: Mulish;
   --font-short-stack: "Short Stack";
   --font-manrope: Manrope;
@@ -19,8 +17,6 @@ body {
   --font-size-xs: 12px;
   --font-size-lg: 18px;
   --font-size-11xl: 30px;
-  --font-size-3xl: 22px;
-  --font-size-mini: 15px;
   --font-size-109xl: 128px;
   --font-size-xl: 20px;
 
@@ -41,18 +37,14 @@ body {
   --gap-xs: 12px;
   --gap-3xs: 10px;
   --gap-7xl: 26px;
-  --gap-21xl: 40px;
   --gap-6xl: 25px;
 
   /* Paddings */
   --padding-135xl: 154px;
   --padding-12xs: 1px;
   --padding-81xl: 100px;
-  --padding-31xl: 50px;
   --padding-xl: 20px;
   --padding-11xl: 30px;
-  --padding-29xl: 48px;
-  --padding-21xl: 40px;
 
   /* Border radiuses */
   --br-7xs: 6px;
