@@ -24,16 +24,17 @@
         <div class="smartpractice">SmartPractice</div>
       </header>
       <header class="welcome-back-parent">
-        <div class="welcome-back">Welcome Back 👋</div>
-        <div class="we-are-happy">We are happy to have you back</div>
+        <div class="welcome-back">Welcome 👋</div>
+        <div class="we-are-happy">We are happy to have you here</div>
       </header>
-      <main class="your-fullname-parent">
-        <div class="your-fullname">Your fullname*</div>
-        <input class="input" placeholder="Enter name" type="text" />
-        <div class="your-fullname">Email address*</div>
-        <input class="input" placeholder="Enter email" type="email" />
-        <div class="create-password">Create password*</div>
-        <input class="input2" placeholder="Enter password" type="password" />
+      <form method="POST">
+        <main class="your-fullname-parent">
+          <div class="your-fullname">Your fullname*</div>
+            <input class="input" name="name" placeholder="Enter name" type="text" style="color: white;" autocomplete="new-password"/>
+          <div class="your-fullname">Email address*</div>
+            <input class="input" name="email" placeholder="Enter email" type="email" style="color: white;" autocomplete="new-password"/>
+          <div class="create-password">Create password*</div>
+            <input class="input2" name="password" placeholder="Enter password" type="password" style="color: white;" autocomplete="new-password"/>
       </main>
       <footer class="line-parent">
         <div class="frame-item"></div>
@@ -47,10 +48,11 @@
         </button>
       </div>
       <div class="button-container">
-        <button class="button1">
+        <button class="button1" type="submit">
           <div class="register-account">Register Account</div>
         </button>
       </div>
+      </form>
       <div class="checkbox-parent">
         <input class="checkbox" required type="checkbox" />
         <div class="i-agree-to">I agree to terms & conditions</div>
