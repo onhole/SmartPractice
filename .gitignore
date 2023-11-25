@@ -1,3 +1,4 @@
 .vscode
-website/__pycache__
-instance/database.db
+__pycache__
+database.db
+note.txt
