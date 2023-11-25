@@ -1,4 +1,3 @@
-.vscode
-/website__pycache__
 instance
-note.txt
+website/__pycache__
+.gitignore
