@@ -3,6 +3,10 @@ body {
   line-height: normal;
 }
 
+.padded-element {
+  padding: 20px;
+}
+
 :root {
   /* fonts */
   --font-clash-grotesk: "Clash Grotesk";

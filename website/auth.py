@@ -14,6 +14,8 @@ def login():
 
         check = User.query.filter_by(email=email).first()
         if check:
+            if email == '' or password == '':
+                return render_template ("login.html", text="Put in actual stuff bro!!!")
             if check_password_hash(check.password, password):
                 login_user(check, remember=True)
                 return redirect(url_for('views.home'))
@@ -28,6 +30,9 @@ def signup():
         name = request.form.get('name')
         password = request.form.get('password')
 
+        if email == '' or password == '' or name == '':
+                return render_template ("signup.html")
+
         new_user = User(email=email, name=name, password=generate_password_hash(password))
         db.session.add(new_user)
         db.session.commit()
@@ -40,6 +45,7 @@ def signup():
 @auth.route('/logout')
 @login_required
 def logout():
+    logout_user()
     return redirect(url_for('auth.login'))
 
 @auth.route('/schedule')
