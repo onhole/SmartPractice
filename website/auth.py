@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from .models import User
+from .models import User, Note
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -40,7 +40,7 @@ def signup():
 
         return redirect(url_for('views.home'))
 
-    return render_template ("signup.html")
+    return render_template("signup.html")
 
 @auth.route('/logout')
 @login_required
@@ -51,4 +51,17 @@ def logout():
 @auth.route('/schedule')
 def schedule():
     return render_template ("schedule.html")
+
+@auth.route('/delete', methods=['POST'])
+@login_required
+def delete():
+    if request.method == 'POST':
+        if 'delete' in request.form:
+            deletednote = request.form.get('newnote') #string of the wanted deleted note
+            wanttodelete = Note.query.filter_by(data=deletednote, user_id=current_user.id).first()
+
+            db.session.delete(wanttodelete)
+            db.session.commit()
+
+    return redirect(url_for('views.home'))
 

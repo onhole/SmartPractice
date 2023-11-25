@@ -153,7 +153,7 @@
 .frame-item {
   padding: var(--padding-lgi) var(--padding-xl);
 }
-.square-checkbox-solid {
+.square-checkbox-solid{
   position: relative;
   width: 20px;
   height: 20px;
