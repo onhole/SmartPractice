@@ -31,7 +31,7 @@
 
 
 
-<h1 align="center" >Notes</h1>
+<h1 align="center" >To-do</h1>
 <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
     <li class="list-group-item">
@@ -39,7 +39,7 @@
             <span>{{ note.data }}</span>
             <form method="POST" action="/delete">
                 <input type="hidden" name="newnote" value="{{ note.data }}">
-                <button class="badge text-bg-secondary" name="delete">Delete</button>
+                <button class="badge text-bg-secondary" name="delete">Finished</button>
             </form>
         </div>
     </li>
@@ -49,7 +49,7 @@
     <textarea name="note" id="note" class="form-control"></textarea>
     <br/>
     <div align="center">
-        <button type="submit" class="btn btn-primary">Add note</button>
+        <button type="submit" class="btn btn-primary">Add to-do</button>
     </div>
 </form>
 

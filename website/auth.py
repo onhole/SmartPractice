@@ -48,9 +48,9 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
-@auth.route('/schedule')
+@auth.route('/Note')
 def schedule():
-    return render_template ("schedule.html")
+    return render_template ("Note.html")
 
 @auth.route('/delete', methods=['POST'])
 @login_required
