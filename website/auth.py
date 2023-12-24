@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from .models import User, Note
+from .models import User, Note, piece
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -54,9 +54,11 @@ def schedule():
         piece_artist = request.form.get('piece_artist')
         note = request.form.get('note')
 
-        
-    if request.method == 'GET':
-        return render_template ("Note.html")
+        new_piece = piece(piece=piece_artist, note=note, user_id=current_user.id)
+        db.session.add(new_piece)
+        db.session.commit()
+
+    return render_template ("Note.html", user=current_user)
 
 @auth.route('/delete', methods=['POST'])
 @login_required

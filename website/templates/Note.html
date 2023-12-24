@@ -39,12 +39,14 @@
 
 
   <div class="card-container" >
+    {% for piece in user.piece %}
     <div class="card card-position card-position-horizontal" style="width: 18rem;">
         <img src="../static/testing.jpg" class="card-img-top" alt="...">
         <div class="card-body">
-        <h5 class="card-title" align="center">Love Dream</h5>
+        <h5 class="card-title" align="center">{{ piece.piece }}</h5>
         </div>
     </div>
+    {% endfor %}
     <div class="card card-position card-position-horizontal" style="width: 18rem;">
         <img src="../static/testing.jpg" class="card-img-top" alt="...">
         <div class="card-body">
