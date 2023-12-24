@@ -48,9 +48,15 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
-@auth.route('/Note')
+@auth.route('/Note', methods=['GET', 'POST'])
 def schedule():
-    return render_template ("Note.html")
+    if request.method == 'POST':
+        piece_artist = request.form.get('piece_artist')
+        note = request.form.get('note')
+
+        
+    if request.method == 'GET':
+        return render_template ("Note.html")
 
 @auth.route('/delete', methods=['POST'])
 @login_required

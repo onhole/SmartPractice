@@ -1,0 +1,16 @@
+.modal-position {
+    margin-top: 300px;
+}
+
+.card-position {
+    margin-top: 100px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: nowrap; /* Prevents cards from wrapping to the next line */
+}
+
+.card-position-horizontal{
+    margin-right: 60px; /* Optional: Adds some space between cards */
+}
