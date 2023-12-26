@@ -9,6 +9,29 @@
     <button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Add a piece</button>
   </div>
   
+  <div class="card-container" >
+    {% for Piece in user.pieces %}
+    
+    <div class="card card-position card-position-horizontal" style="width: 18rem;"> <!--type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
+        <img src="../static/testing.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title" align="center">{{ Piece.title }}</h5>
+        <div class="d-flex justify-content-between align-items-center">
+          <audio controls>
+            <source src="{{ Piece.audio_path }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <form method="POST" action="/delete_piece">
+            <input type="hidden" name="piece_id" value="{{ Piece.id }}">
+            <button type="submit" class="btn-close" name="delete_piece" aria-label="Close"></button>
+          </form>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- add the function to add a card here.-->
+  </div>
+
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-position">
@@ -21,12 +44,22 @@
             <div class="modal-body">
                 <div class="mb-3">
                     <label for="pieceTitle" class="form-label">Piece Title and Artist</label>
-                    <input type="text" class="form-control" id="pieceTitle" name="piece_artist" placeholder="Enter piece title">
+                    <input type="text" class="form-control" id="piece_artist" name="piece_artist" placeholder="Enter piece title">
                 </div>
                 <div class="mb-3">
                     <label for="pieceNotes" class="form-label">Notes about the piece</label>
-                    <textarea class="form-control" id="pieceNotes" name="note" placeholder="Enter notes about the piece" rows="4"></textarea>
+                    <textarea class="form-control" id="note" name="note" placeholder="Enter notes about the piece" rows="4"></textarea>
                 </div>
+                <div class="mb-3">
+                  <form method="POST" enctype="multipart/form-data">
+                    <label for="pieceAudio" class="form-label">Practice Audio</label>
+                    <div>
+                      {{ form.hidden_tag() }}
+                      {{ form.file() }}
+                      {{ form.submit() }}
+                    </div>
+                  </form>
+              </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -35,26 +68,6 @@
         </form>
       </div>
     </div>
-  </div>
-
-
-  <div class="card-container" >
-    {% for piece in user.piece %}
-    <div class="card card-position card-position-horizontal" style="width: 18rem;">
-        <img src="../static/testing.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title" align="center">{{ piece.piece }}</h5>
-        </div>
-    </div>
-    {% endfor %}
-    <div class="card card-position card-position-horizontal" style="width: 18rem;">
-        <img src="../static/testing.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title" align="center">Love Dream</h5>
-        <p class="card-text" align="center">audio sample</p>
-        </div>
-    </div>
-    <!-- add the function to add a card here.-->
   </div>
 
 

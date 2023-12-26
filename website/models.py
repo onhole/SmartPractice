@@ -13,13 +13,13 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     name = db.Column(db.String(150))
-    notes = db.relationship('Note') # a list within the class basically.
-    piece = db.relationship('piece')
+    notes = db.relationship('Note')
+    pieces = db.relationship('Piece')
 
-class piece (db.Model):
+class Piece (db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    piece = db.column(db.String(10000)),
-    note = db.column(db.String(10000)),
+    title = db.Column(db.String(10000))
+    note = db.Column(db.String(10000))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # has to be primary key of the other class
     
