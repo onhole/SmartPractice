@@ -1,0 +1,3 @@
+# SmartPractice
+#### Video Demo:  https://youtu.be/0dNzZ8nDi94
+#### Description: Cretaed inside pipenv, SmartPractice is a web application that allows users to journal their musical practice journey through todo lists and notes lists for specific pieces.  Upon registering for the website, the user's information will be stored inside a SQLITE3 Database with a password encryption.  This way, the user can access their unique data such as their notes and pieces through a log in and log out function.  
