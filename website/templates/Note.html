@@ -13,14 +13,11 @@
     {% for Piece in user.pieces %}
     
     <div class="card card-position card-position-horizontal" style="width: 18rem;"> <!--type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
-        <img src="../static/testing.jpg" class="card-img-top" alt="...">
         <div class="card-body">
         <h5 class="card-title" align="center">{{ Piece.title }}</h5>
         <div class="d-flex justify-content-between align-items-center">
-          <audio controls>
-            <source src="{{ Piece.audio_path }}" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
+          <h7 class="card-title" align="center">{{ Piece.note }}</h5>
+          <small><strong>Created at: {{ Piece.date }} (GMT)</strong></small>
           <form method="POST" action="/delete_piece">
             <input type="hidden" name="piece_id" value="{{ Piece.id }}">
             <button type="submit" class="btn-close" name="delete_piece" aria-label="Close"></button>
@@ -50,16 +47,6 @@
                     <label for="pieceNotes" class="form-label">Notes about the piece</label>
                     <textarea class="form-control" id="note" name="note" placeholder="Enter notes about the piece" rows="4"></textarea>
                 </div>
-                <div class="mb-3">
-                  <form method="POST" enctype="multipart/form-data">
-                    <label for="pieceAudio" class="form-label">Practice Audio</label>
-                    <div>
-                      {{ form.hidden_tag() }}
-                      {{ form.file() }}
-                      {{ form.submit() }}
-                    </div>
-                  </form>
-              </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

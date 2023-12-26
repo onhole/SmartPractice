@@ -1,5 +1,4 @@
-from flask import Blueprint, current_app, render_template, request, redirect, url_for
-import os
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import FileField, SubmitField
 from werkzeug.utils import secure_filename
@@ -8,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from . import create_app
 from flask_login import login_user, login_required, logout_user, current_user
+import datetime  # Set created_at attribute with current timestamp
 
 auth = Blueprint('auth', __name__)
 class UploadFileForm(FlaskForm):
@@ -59,18 +59,6 @@ def logout():
 @auth.route('/Note', methods=['GET', 'POST'])
 @login_required
 def schedule():
-    form = UploadFileForm()
-    if form.validate_on_submit():
-        uploaded_file = form.file.data  # Get the file object from the form
-        
-        if uploaded_file and hasattr(uploaded_file, 'filename'):
-            upload_folder = current_app.config['UPLOAD_FOLDER']
-            file_path = os.path.join(upload_folder, secure_filename(uploaded_file.filename))
-            
-            uploaded_file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), file_path))
-            # Save the uploaded file to the desired location
-            
-            # Rest of your code...
     if request.method == 'POST':
         piece_artist = request.form.get('piece_artist')
         note = request.form.get('note')
@@ -79,7 +67,7 @@ def schedule():
         db.session.add(new_piece)
         db.session.commit()
 
-    return render_template ("Note.html", user=current_user, form=form)
+    return render_template ("Note.html", user=current_user)
 
 @auth.route('delete_piece', methods=["POST"])
 @login_required

@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from os import path
+from os import path, makedirs
 from flask_login import LoginManager
+import logging
 
 
 db = SQLAlchemy()
@@ -9,8 +10,8 @@ DB_NAME = "database.db"
 
 def create_app():
     app = Flask(__name__)
+    logging.basicConfig(level=logging.DEBUG)
     app.config['SECRET_KEY'] = 'jujutsu'
-    app.config['UPLOAD_FOLDER'] = 'static/file'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
 
